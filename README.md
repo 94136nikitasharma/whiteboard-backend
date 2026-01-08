@@ -1,5 +1,10 @@
 # Whiteboard Backend
 
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen)](https://nodejs.org/)
+[![Socket.io Version](https://img.shields.io/badge/socket.io-4.7.5-blue)](https://socket.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 A real-time collaborative whiteboard backend server built with Node.js, Express, and Socket.io.
 
 ## Overview
