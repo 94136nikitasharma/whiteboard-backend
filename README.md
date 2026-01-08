@@ -7,6 +7,12 @@
 
 A real-time collaborative whiteboard backend server built with Node.js, Express, and Socket.io.
 
+## 🚀 Live Demo
+
+**Try it now:** [https://whiteboard-backend-wwd2.onrender.com](https://whiteboard-backend-wwd2.onrender.com)
+
+> **Note:** App is hosted on Render's free tier. First load may take ~30 seconds due to cold start.
+
 ## Overview
 
 This project provides a fully functional server-side and frontend infrastructure for a collaborative whiteboard application. Built with Express.js and Socket.io, it supports real-time multi-user collaboration, room management, and synchronized drawing operations. Includes a complete HTML5 Canvas-based frontend application.
