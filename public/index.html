@@ -496,8 +496,8 @@
     </div>
 
     <script>
-        // Configuration
-        const SERVER_URL = 'http://localhost:8080';
+        // Configuration - auto-detect server URL for production
+        const SERVER_URL = window.location.origin;
 
         // State
         let socket = null;
