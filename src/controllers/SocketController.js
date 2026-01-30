@@ -37,11 +37,11 @@ class SocketController {
             return;
         }
 
-        // Get or create whiteboard
+        // Get or create whiteboard using roomId as the key
         let whiteboard = StorageService.getWhiteboard(roomId);
         if (!whiteboard) {
-            // Auto-create whiteboard if it doesn't exist
-            whiteboard = StorageService.createWhiteboard(`Room ${roomId}`);
+            // Create whiteboard with roomId as the ID
+            whiteboard = StorageService.createWhiteboardWithId(roomId, `Room ${roomId}`);
         }
 
         // Join socket to room
@@ -58,19 +58,21 @@ class SocketController {
 
         // Send current canvas state to the new user
         const state = StorageService.getWhiteboardState(roomId);
-        socket.emit(SOCKET_EVENTS.CANVAS_STATE, state);
+        if (state) {
+            socket.emit(SOCKET_EVENTS.CANVAS_STATE, state);
 
-        // Notify others in the room
-        SocketService.emitToRoomExcept(roomId, socket.id, SOCKET_EVENTS.USER_JOINED, {
-            userId: socket.id,
-            userName: socket.userName,
-            users: state.users
-        });
+            // Notify others in the room
+            SocketService.emitToRoomExcept(roomId, socket.id, SOCKET_EVENTS.USER_JOINED, {
+                userId: socket.id,
+                userName: socket.userName,
+                users: state.users
+            });
 
-        // Send updated user list to all
-        SocketService.emitToRoom(roomId, SOCKET_EVENTS.USERS_UPDATE, {
-            users: state.users
-        });
+            // Send updated user list to all
+            SocketService.emitToRoom(roomId, SOCKET_EVENTS.USERS_UPDATE, {
+                users: state.users
+            });
+        }
     }
 
     // Handle leave room

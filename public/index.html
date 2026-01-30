@@ -112,8 +112,10 @@
             backdrop-filter: blur(10px);
             padding: 20px;
             width: 280px;
+            min-width: 200px;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
+            flex-shrink: 0;
         }
 
         .tool-section {
@@ -143,7 +145,7 @@
 
         .tool-buttons {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
 
@@ -724,8 +726,14 @@
         }
 
         function drawObject(obj) {
-            ctx.strokeStyle = obj.color;
-            ctx.lineWidth = obj.width;
+            // Handle eraser: use white color and increased width
+            if (obj.type === 'eraser') {
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.lineWidth = obj.width * 3;
+            } else {
+                ctx.strokeStyle = obj.color;
+                ctx.lineWidth = obj.width;
+            }
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
 

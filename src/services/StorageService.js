@@ -15,6 +15,15 @@ class StorageService {
         return whiteboard;
     }
 
+    // Create a whiteboard with a specific ID (for room-based whiteboards)
+    createWhiteboardWithId(id, name) {
+        const whiteboard = new Whiteboard(name);
+        whiteboard.id = id; // Override the auto-generated ID
+        this.whiteboards.set(id, whiteboard);
+        Logger.info(`Whiteboard created with custom ID: ${id} - ${name}`);
+        return whiteboard;
+    }
+
     // Get a whiteboard by ID
     getWhiteboard(id) {
         return this.whiteboards.get(id);
